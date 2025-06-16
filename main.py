@@ -15,7 +15,11 @@ import numpy as np
 import random
 from Circle import Circle
 import cv2 
+import matplotlib
+matplotlib.use('Agg')  # Use non-interactive backend
 import matplotlib.pyplot as plt
+from IPython.display import display, clear_output
+import time
 
 #return rand circle
 def mutate(genome, img_width, img_height):
@@ -31,9 +35,17 @@ def load_image_cv2(filename):
   img_array = np.array(colored_img)
   return img_array
   
-def show_image_array (img): 
+def show_image_array(img): 
+  plt.figure(figsize=(8, 6))
   plt.imshow(img)
-  plt.show(block=False)
+  plt.axis('off')
+  plt.tight_layout()
+  plt.savefig('current_generation.png', bbox_inches='tight', dpi=100)
+  plt.close()  # Close the figure to free memory
+  
+  # Display the saved image
+  from IPython.display import Image, display
+  display(Image('current_generation.png'))
 
 def show_genome(genome, width , height ):
   img = np.zeros((height, width, 3), dtype=np.float32)
@@ -50,6 +62,7 @@ parent_fit = 1000000000000000000000  #TEMP VAL
 
 height, width = target_img.shape[:2]
 pop_size = 1000
+generation = 0
 
 
 
@@ -75,6 +88,11 @@ while True:
       parent_fit = child_fit
       parent_genome = child
 
-  print("Best Fit of generation: " ,parent_fit)
-  show_genome(parent_genome, width, height)
+  generation += 1
+  print(f"Generation {generation} - Best Fit: {parent_fit}")
+  
+  # Show genome every few generations to avoid overwhelming output
+  if generation % 10 == 0 or generation == 1:
+    show_genome(parent_genome, width, height)
+    time.sleep(1)  # Brief pause to ensure display
   
