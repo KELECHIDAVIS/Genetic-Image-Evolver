@@ -5,8 +5,8 @@
 
 target: ![image](https://github.com/user-attachments/assets/73ddcb54-5196-49d8-b26c-b7aed0b38747) 
 
-Gen 10: !
-[image](https://github.com/user-attachments/assets/d0f2548d-093d-4b09-914f-1dfed87532d2) 
+Gen 10: 
+![image](https://github.com/user-attachments/assets/d0f2548d-093d-4b09-914f-1dfed87532d2) 
 Gen 100: 
 ![image](https://github.com/user-attachments/assets/39694a71-9873-4394-8a8a-31eddca87697) 
 Gen 830: 
