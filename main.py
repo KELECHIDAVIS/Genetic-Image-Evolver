@@ -9,10 +9,10 @@ from multiprocessing import Pool, cpu_count
 import time
 
 
-POP_SIZE = 1000
-MAX_GENOME_LENGTH = 200
+POP_SIZE = 1200
+MAX_GENOME_LENGTH = 2000
 GENE_DELETION_CHANCE = 0.1
-IMG_PATH = "target3.png"
+IMG_PATH = "target5.png"
 
 
 def load_image_cv2(filename):
@@ -20,19 +20,18 @@ def load_image_cv2(filename):
     colored_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     return np.array(colored_img, dtype=np.float32) / 255.0  # Normalize for blending
 
-def show_image_array(img):
+def show_image_array(img, gen):
     plt.figure(figsize=(8, 6))
     plt.imshow(img)
     plt.axis('off')
     plt.tight_layout()
-    plt.savefig('current_generation.png', bbox_inches='tight', dpi=100)
+    plt.savefig(f"evolution_pics/current_generation_{gen}.png", bbox_inches='tight', dpi=100)
     plt.close()
-    from IPython.display import Image, display
-    display(Image('current_generation.png'))
+    
 
-def show_genome(genome, width, height):
+def show_genome(genome, width, height, gen):
     img = render_genome(genome, width, height)
-    show_image_array(img)
+    show_image_array(img, gen)
 
 def render_genome(genome, width, height):
     img = np.zeros((height, width, 3), dtype=np.float32)
@@ -92,7 +91,7 @@ def evolve():
         print(f"Generation {generation} - Best Fit: {parent_fit:.6f} - Genome Length: {len(parent_genome)}")
 
         if generation % 10 == 0 or generation == 1:
-            show_genome(parent_genome, width, height)
+            show_genome(parent_genome, width, height, generation)
             time.sleep(0.5)
 
 if __name__ == "__main__":
