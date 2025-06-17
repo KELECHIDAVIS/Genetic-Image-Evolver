@@ -3,7 +3,9 @@
 
 "Can AI make (good) art? "
 
-target: ![image](https://github.com/user-attachments/assets/73ddcb54-5196-49d8-b26c-b7aed0b38747) 
+target: 
+
+![image](https://github.com/user-attachments/assets/73ddcb54-5196-49d8-b26c-b7aed0b38747) 
 
 Gen 10:
 
